@@ -40,10 +40,6 @@ const TweetCard = () => {
     const handleLikeTweet = (event) => {
         console.log("handleLikeTweet");
     };
-    //
-    // const handleOpenReplyModel = (event) => {
-    //     console.log("handleOpenReplyModel");
-    // };
 
     return (
         <div>
@@ -60,10 +56,6 @@ const TweetCard = () => {
                             <div className={"font-semibold"}>Code with Nurzhan</div>
                             <div className={"text-gray-600"}>@nurzhan . 2m</div>
                             <VerifiedIcon />
-                            {/*<img*/}
-                            {/*    className={"ml-2 w-5 h-5"}*/}
-                            {/*    src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*BHMJVgK_uXwhjv4AHAGD3w.jpeg"*/}
-                            {/*    alt=""/>*/}
                         </div>
                         <div>
                             <Button
@@ -92,7 +84,7 @@ const TweetCard = () => {
                         </div>
                     </div>
                     <div className={"mt-2"}>
-                        <div className={"cursor-pointer"}>
+                        <div className={"cursor-pointer"} onClick={()=>navigate("/tweet/1")}>
                             <p className={"mb-2 p-0"}>Twitter Clone Full-Stack Project</p>
                             <img
                                 className={"w-[28rem] border border-gray-400 p-5 rounded-md"}

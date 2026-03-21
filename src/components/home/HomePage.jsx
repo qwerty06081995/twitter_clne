@@ -3,6 +3,9 @@ import {Grid} from "@mui/material";
 import Navigation from "../navigation/Navigation"
 import HomeSection from "../home_section/HomeSection";
 import RightPart from "../right_part/RightPart";
+import {Route, Routes} from "react-router-dom";
+import Profile from "../profile/Profile";
+import TweetDetail from "../tweet_details/TweetDetail";
 
 const HomePage = () => {
     return (
@@ -12,7 +15,12 @@ const HomePage = () => {
                     <Navigation />
                 </Grid>
                 <Grid size={{ xs: 12, lg: 6 }} className="px-5 lg:px-9 hidden lg:block w-full realtive">
-                    <HomeSection />
+                    <Routes>
+                        <Route path={"/"} element={<HomeSection />}></Route>
+                        <Route path={"/home"} element={<HomeSection />}></Route>
+                        <Route path={"/profile/:id"} element={<Profile />}></Route>
+                        <Route path={"/tweet/:id"} element={<TweetDetail />}></Route>
+                    </Routes>
                 </Grid>
                 <Grid size={{ xs: 0, lg: 3 }} className="hidden lg:block w-full realtive">
                     <RightPart />
