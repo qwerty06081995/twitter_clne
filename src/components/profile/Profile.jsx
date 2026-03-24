@@ -13,13 +13,14 @@ import {useNavigate} from "react-router";
 import {Avatar, Button} from "@mui/material";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import TweetCard from "../home_section/TweetCard";
+import ProfileModal from "./ProfileModal";
 
 const Profile = () => {
+    const [openProfileModal, setOpenProfileModal] = useState(false);
+    const handleOpen = () => setOpenProfileModal(true);
+    const handleClose = () => setOpenProfileModal(false);
     const navigate = useNavigate()
     const handleBack = ()=>navigate(-1);
-    const handleOpenProfileModel = (event)=>{
-        console.log("handleOpenProfileModel");
-    };
     const handleFollowUser = (event)=>{
         console.log("handleFollowUser");
     };
@@ -34,6 +35,8 @@ const Profile = () => {
             console.log("tab 1");
         }
     };
+
+
 
     return (
         <div>
@@ -57,7 +60,7 @@ const Profile = () => {
                     />
                     {true?
                         (<Button
-                            onClick={handleOpenProfileModel}
+                            onClick={handleOpen}
                             className={"rounded-full"}
                             variant={"contained"}
                             sx={{borderRadius: "20px"}}
@@ -108,7 +111,6 @@ const Profile = () => {
                     </div>
                 </div>
             </section>
-
             <section className={"py-6"}>
                 <Box sx={{ width: '100%' }}>
                     <TabContext value={tabValue}>
@@ -128,6 +130,9 @@ const Profile = () => {
                         <TabPanel value="4">Likes</TabPanel>
                     </TabContext>
                 </Box>
+            </section>
+            <section>
+                <ProfileModal handleClose={handleClose} open={openProfileModal} />
             </section>
         </div>
     )

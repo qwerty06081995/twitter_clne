@@ -9,7 +9,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import ReplyModal from "./ReplyModal";
 const TweetCard = () => {
+    const [openReplyModal, setOpenReplyModal] = useState(false);
+    const handleOpenReplyModal = () => setOpenReplyModal(true);
+    const handleCloseReplyModal = () => setOpenReplyModal(false);
+
     const navigate = useNavigate();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -27,10 +32,6 @@ const TweetCard = () => {
     const handleEdit = (event) => {
         console.log("Edit");
         handleClose(event);
-    };
-
-    const handleOpenReplyModel = (event) => {
-        console.log("handleOpenReplyModel");
     };
 
     const handleCreateRetweet = (event) => {
@@ -93,7 +94,7 @@ const TweetCard = () => {
                         </div>
                         <div className={"py-6 flex flex-wrap justify-between items-center"}>
                             <div className={"space-x-3 flex items-center text-gray-600"}>
-                                <ChatBubbleOutlineIcon className={"cursor-pointer"} onClick={handleOpenReplyModel}/>
+                                <ChatBubbleOutlineIcon className={"cursor-pointer"} onClick={handleOpenReplyModal}/>
                                 <p>43</p>
                             </div>
                             <div className={`${true?"text-pink-600":"text-gray-600"} space-x-3 flex items-center`}>
@@ -107,16 +108,19 @@ const TweetCard = () => {
                                 }
                             </div>
                             <div className={"space-x-3 flex items-center text-gray-600"}>
-                                <BarChartIcon className={"cursor-pointer"} onClick={handleOpenReplyModel}/>
+                                <BarChartIcon className={"cursor-pointer"} onClick={handleOpenReplyModal}/>
                                 <p>4300</p>
                             </div>
                             <div className={"space-x-3 flex items-center text-gray-600"}>
-                                <FileUploadIcon className={"cursor-pointer"} onClick={handleOpenReplyModel}/>
+                                <FileUploadIcon className={"cursor-pointer"} onClick={handleOpenReplyModal}/>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <section>
+                <ReplyModal handleClose={handleCloseReplyModal} open={openReplyModal}/>
+            </section>
         </div>
     )
 }
