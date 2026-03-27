@@ -1,7 +1,13 @@
 import React from "react";
 import {Grid} from "@mui/material";
+import {GoogleLogin} from "@react-oauth/google";
+import Button from "@mui/material/Button";
+import AuthModal from "./AuthModal";
 
 const Authentication = () => {
+    const [openAuthModal, setOpenAuthModal] = React.useState(false);
+    const handleOpenAuthModal = ()=>setOpenAuthModal(true);
+    const handleCloseAuthModal = ()=>setOpenAuthModal(false);
     return (
         <div>
             <Grid className={"overflow-y-hidden"} container>
@@ -23,10 +29,40 @@ const Authentication = () => {
                         </svg>
                     </div>
                 </Grid>
-                <Grid className={""}>
-                {/*Building A Twitter Full Stack Clone Using Spring Boot, React, MySQL, MUI Tailwind and Formik 28:29*/}
+                <Grid className={"px-10"} size={{lg:5, xs:12}}>
+                    <h1 className={"mt-10 font-bold text-7xl"}>Happening Now</h1>
+                    <h1 className={"font-bold text-3xl py-16"}>Join Twitter Clne Today</h1>
+                    <div className={"w-[60%]"}>
+                        <div className={"w-full"}>
+                            <GoogleLogin width={330} onSuccess={(response) => console.log(response)}/>
+                            <p className={"py-5 text-center"}>OR</p>
+                            <Button
+                                onClick={handleOpenAuthModal}
+                                fullWidth={true}
+                                variant={"contained"}
+                                size="large"
+                                sx={{
+                                    borderRadius: "29px",
+                                    py:"7px"
+                                }}>Create Account</Button>
+                            <p className={"text-sm mt-2"}>By continuing, you agree to our Terms of Service and acknowledge that you have read our Privacy Policy.</p>
+                        </div>
+                        <div className={"w-full mt-10"}>
+                            <h1 className={"font-bold text-xl mb-5"}>Already have account?</h1>
+                            <Button
+                                onClick={handleOpenAuthModal}
+                                fullWidth={true}
+                                variant={"outlined"}
+                                size="large"
+                                sx={{
+                                    borderRadius: "29px",
+                                    py:"7px"
+                                }}>Login</Button>
+                        </div>
+                    </div>
                 </Grid>
             </Grid>
+            <AuthModal open={openAuthModal} handleClose={handleCloseAuthModal} />
         </div>
     )
 }

@@ -3,8 +3,12 @@ import {navigationMenu} from "./NavigationMenu";
 import {useNavigate} from "react-router";
 import {Avatar, Button, MenuItem, Menu} from "@mui/material";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../store/auth/Action";
 
 const Navigation = () => {
+    const {auth} = useSelector(store=>store);
+    const dispatch = useDispatch()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -16,6 +20,7 @@ const Navigation = () => {
     const handleLogout = (event) => {
         console.log("Logout");
         handleClose(event);
+        dispatch(logout());
     };
 
     const navigate = useNavigate()
@@ -58,8 +63,8 @@ const Navigation = () => {
                         src={"https://avatars.mds.yandex.net/get-yapic/0/0-0/islands-200"}
                     />
                     <div>
-                        <div>Code with Nurzhan</div>
-                        <div className={"opacity-70"}>@nurzhan</div>
+                        <p>{auth.user?.fullName}</p>
+                        <div className={"opacity-70"}>@{auth.user?.fullName.split(" ").join("_").toLowerCase()}</div>
                     </div>
 
                     <Button
